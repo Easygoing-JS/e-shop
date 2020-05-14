@@ -1,0 +1,26 @@
+<div class="catalog">
+    {% for product in catalog %}
+        <div class="product">
+            <a class="product-wrapper"
+               href="index.php?c=page&act=product&id={{ product.id }}">
+                <img class="photo"
+                        {# src="img/{{ product.image}}" #}
+                     src="img/default.jpg"
+                     alt="image">
+                <span class="product-price">{{ product.price }} руб.</span>
+                <span class="product-title">{{ product.title }}</span>
+            </a>
+{#            <a class="tocart-btn" href="#">В корзину</a>#}
+            <form method='post'>
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input class="tocart-btn" type='submit' name='button' value='В корзину'>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+{#{% if text == true %}#}
+{#    <script>#}
+{#        alert('{{ text }}');#}
+{#    </script>#}
+{#{% endif %}#}

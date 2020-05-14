@@ -1,0 +1,55 @@
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>Дата заказа</th>
+        <th>Сумма</th>
+        <th>Количество</th>
+        <th>Адрес</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+                <th>Статус</th>
+        {#        <th>ID</th>#}
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.datetime_create }}</td>
+            <td>{{ order.amount }}</td>
+            <td>{{ order.count }}</td>
+            <td>{{ order.destination }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.phone }}</td>
+            {#            <td>{{ order.id_order }}</td>#}
+            <td><span class="order-status">{{ order.order_status_name }}</span>
+                <form action="" method="post">
+                    <select name="setOrderStatus[]">
+                        <option
+                                {% if order.id_order_status == 1 %}
+                                    hidden
+                                {% endif %} value="1">сформирован
+                        </option>
+                        <option
+                                {% if order.id_order_status == 2 %}
+                                    hidden
+                                {% endif %} value="2">отправлен
+                        </option>
+                        <option
+                                {% if order.id_order_status == 3 %}
+                                    hidden
+                                {% endif %} value="3">доставлен
+                        </option>
+                        <option
+                                {% if order.id_order_status == 4 %}
+                                    hidden
+                                {% endif %} value="4">отменён
+                        </option>
+                    </select>
+                    <input type="hidden" name="id_order" value="{{ order.id_order }}">
+                    <input type="submit" value="ОК" name="submit">
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+{#<p>#}
+{#    Авторизация пройдена успешно — <b>{{ username }}</b>#}
+{#</p>#}
+
+    {% for user in userdata %}
+        Имя: {{ user.name }}<br>
+        Телефон: {{ user.phone }}<br>
+    {% endfor %}
+
+<hr>
+{% if orders %}
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>Дата заказа</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        <th>Адрес</th>
+        <th>Статус</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.datetime_create }}</td>
+            <td>{{ order.amount }}</td>
+            <td>{{ order.destination }}</td>
+            <td>{{ order.order_status_name }}</td>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <p>У вас еще было оформленных заказов</p>
+    {% endif %}
+    </tbody>
+</table>
